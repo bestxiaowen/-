@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/bootstrap.css">
+    <link rel="stylesheet" href="css/animate.min.css">
+    <link rel="stylesheet" href="css/swiper-3.4.2.min.css">
+    <script src="js/jquery-1.11.3.js"></script>
+    <script src="js/jquery.color.js"></script>
+    <script src="js/bootstrap.js"></script>
+    <script src="js/swiper.animate1.0.2.min.js"></script>
+    <script src="js/swiper-3.4.2.jquery.min.js"></script>
+</head>
+<body>
+    <!-- 底部 -->
+    <div class="footer" id="content">
+        <div class="container">
+            <div class="footer_us col-lg-3">
+                <h3>About Us</h3>
+                <span>Curabitur non nulla sit amet nisl tempus convallis quis ac lectus. lacinia eget consectetur sed, convallis at tellus. Nulla porttitor accumsan tincidunt. Vestibulum ante ipsum primis in faucibus orci ultrices posuere cubilia Curae.</span>
+            </div>
+            <div class="footer_us col-lg-3">
+                <h3>Office Hour</h3>
+                <h5>Opening Days :</h5>
+                <p>Monday – Friday : 9am to 20 pm</p>
+                <p>Saturday : 9am to 17 pm</p>
+                <h5>Vacations :</h5>
+                <p>All Sunday Days</p>
+                <p>All Official Holidays</p>
+            </div>
+            <div class="footer_us col-lg-3">
+                <h3>ServiceList</h3>
+                <a href="#myModal" data-toggle="modal"><span class="glyphicon glyphicon-arrow-right"></span>  Machinery & Tools</a><br/>
+                <a href="#myModal" data-toggle="modal"><span class="glyphicon glyphicon-arrow-right"></span>  Coal & Solid Fuels</a><br/>
+                <a href="#myModal" data-toggle="modal"><span class="glyphicon glyphicon-arrow-right"></span>  Industrial Chemicals</a><br/>
+                <a href="#myModal" data-toggle="modal"><span class="glyphicon glyphicon-arrow-right"></span>  Pharmaceutical Research</a><br/>
+                <a href="#myModal" data-toggle="modal"><span class="glyphicon glyphicon-arrow-right"></span>  Aerospace & Defence</a><br/>
+                <a href="#myModal" data-toggle="modal"><span class="glyphicon glyphicon-arrow-right"></span>  Oil and Gas Revolution</a><br/>
+            </div>
+            <div class="footer_us col-lg-3">
+                <h3>Subscribe</h3>
+                <span>Vivamus magna justo, lacinia eget consectetur sed.</span>
+                <div class="input-group">
+                    <input type="text" class="form-control" style="border: none;height: 40px" placeholder="Your emal...">
+                    <span class="input-group-btn">
+                            <button style="background-color: #ff4c4c;border: none;height: 40px" class="btn btn-default" type="button">
+                                <span style="color: white" class="glyphicon glyphicon-comment" aria-hidden="true"></span>
+                            </button>
+                        </span>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--模态框-->
+    <div class="modal fade" id="myModal" >
+        <div class="modal-dialog">
+            <div class="modal-content">
+
+                <div class="modal-body">
+                    <button style="font-size: 30px" type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <h3 style="text-align: center;margin: 20px 0">FABRICATOR</h3>
+                    <img src="img/v2.jpg" alt="" style="width: 100%;margin-bottom: 15px">
+                    <p style="color: #999;width: 100%;padding: 0 15px;letter-spacing: 0.7px;line-height: 28px">Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex ea commodi consequatur? Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae consequatur, vel illum qui dolorem eum fugiat quo voluptas nulla pariatur. " Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae consequatur.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+<script>
+    $(".footer_us>a").on({
+        mouseover: function () {
+            $(this).stop().animate({
+                "color": "#ff4c4c",
+            }, 500)
+        },
+        mouseout: function () {
+            $(this).stop().animate({
+                "color": "#bfbfbf",
+            }, 500)
+        }
+    });
+</script>
+</html>

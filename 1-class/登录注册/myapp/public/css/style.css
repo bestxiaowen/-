@@ -1,0 +1,162 @@
+body{
+    margin: 0;
+    padding: 0;
+    background-image: url(../img/index.jpg);
+    /*background-repeat: no-repeat;*/
+    background-size: cover;
+}
+.main{
+    margin-top: 200px;
+}
+.main h1{
+    font-weight: bold;
+}
+.main h1,
+.main h2{
+    text-align: center!important;
+    padding: 20px 0;
+}
+.main button{
+    display: block;
+    margin: 40px auto;
+}
+.login1,
+.login2{
+    position: relative;
+
+}
+.login1 h1,
+.login2 h1{
+    text-align: center;
+    color: #ff4c4c;
+    line-height: 200px;
+    font-weight: bold;
+    letter-spacing: 4px;
+}
+.login1 .head,
+.login2 .head{
+    width: 100%;
+    background-color: white;
+    display: flex;
+    justify-content: space-around;
+    border-bottom: 1px solid black;
+}
+.login1 .head>h4,
+.login2 .head>h4{
+    float: left;
+    width: 80px;
+    display: block;
+    text-align: center;
+    padding: 20px 0;
+    cursor: pointer;
+    margin: 0;
+}
+.login1 .ho,
+.login2 .ho{
+    border-bottom: 2px solid black;
+    font-weight: bold;
+}
+.login1 .body1{
+    background-color: white;
+    padding-bottom: 45px;
+}
+.login1 .body1 span,
+.login1 .body2 span{
+    display: block;
+    font-weight: bold;
+    font-size: 18px;
+    letter-spacing: 2px;
+    line-height: 35px;
+}
+.login1 .body1 .user,
+.login1 .body2 .user{
+    width: 80%;
+    margin: 0 auto;
+    padding-top: 65px;
+    /*text-align: center;*/
+}
+.login1 .body1 .password,
+.login1 .body2 .password{
+    width: 80%;
+    margin: 0 auto;
+    padding-top: 35px;
+    /*text-align: center;*/
+}
+.login1 .body1 input,
+.login1 .body2 input{
+    border: #c8c8c8 solid 1px;
+    border-radius: 3px;
+    width: 80%;
+    height: 35px;
+    margin: 0 15px;
+    padding-left: 10px;
+}
+.login1 .btn{
+    width: 34%;
+    display: block;
+    margin: 35px auto;
+    height: 40px;
+}
+.login1 .left{
+    width: 25%;
+    float: left;
+    text-align: right;
+}
+.login1 .right{
+    width: 75%;
+    float: left;
+}
+.login1 .body2{
+    width: 100%;
+    background-color: white;
+    padding-bottom: 45px;
+    display: none;
+}
+
+.login2 .body1{
+    background-color: white;
+    padding-bottom: 45px;
+}
+.login2 .body1 span,
+.login2 .body2 span{
+    display: block;
+    font-weight: bold;
+    font-size: 18px;
+    letter-spacing: 2px;
+    line-height: 35px;
+}
+.login2 .body1 .user,
+.login2 .body2 .user{
+    width: 80%;
+    margin: 0 auto;
+    padding-top: 65px;
+    text-align: center;
+}
+.login2 .body1 .password,
+.login2 .body2 .password{
+    width: 80%;
+    margin: 0 auto;
+    padding-top: 35px;
+    text-align: center;
+}
+.login2 .body1 input,
+.login2 .body2 input{
+    border: #c8c8c8 solid 1px;
+    border-radius: 3px;
+    width: 80%;
+    height: 35px;
+    margin: 0 15px;
+    padding-left: 10px;
+}
+.login2 .btn{
+    width: 34%;
+    display: block;
+    margin: 35px auto;
+    height: 40px;
+}
+.login2 .body2{
+    width: 100%;
+    background-color: white;
+    padding-bottom: 45px;
+    display: none;
+}

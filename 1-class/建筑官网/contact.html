@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Contact Us</title>
+    <link rel="stylesheet" href="css/contact.css">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/bootstrap.css">
+    <script src="js/jquery-1.11.3.js"></script>
+    <script src="js/jquery.color.js"></script>
+    <script src="js/bootstrap.js"></script>
+</head>
+<body>
+<!--header-->
+    <div class="header">
+        <header>
+            <nav class="container-fluid">
+                <div class="container">
+                    <a href="index.html" class="col-lg-7 red">FABRICATOR</a>
+                    <ul class="col-lg-5">
+                        <li><a href="index.html">HOMT</a></li>
+                        <li><a href="about.html">ABOUT</a></li>
+                        <li><a href="project.html">PROJECT</a></li>
+                        <li><a href="more.html">MORE</a></li>
+                        <li><a href="contact.html" class="red">CONTACT</a></li>
+                    </ul>
+                </div>
+                <h5 class="page-header"></h5>
+            </nav>
+        </header>
+    </div>
+    <div class="contact_us">
+        <div class="container">
+            <p class="normal_p"><span>Contact</span> Us</p>
+            <div class="col-lg-6">
+                <div style="width: 80%">
+                    <h3 class="h3">GET INTOUCH,WE WILL CALL YOU</h3>
+                    <div class="input">
+                        <p>Full Name:</p>
+                        <input type="text" class="focus">
+                    </div>
+                    <div class="input">
+                        <p>Email Address:</p>
+                        <input type="email" class="focus">
+                    </div>
+                    <div class="btn">
+                        <input type="submit" value="Send" id="btn1">
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-6 right">
+                <div>
+                    <h3 class="h3">CONNECT WITH US</h3>
+                    <p><span>Phone : </span>+1(100)222-23-33</p>
+                    <p><span>Email : </span><a href="#">info@example.com</a></p>
+                    <p><span>Address : </span>132 New Lenox, 868 1st Avenue,4th United States.</p>
+                    <div class="input">
+                        <input type="text" placeholder="Enter Your Number">
+                        <input type="button" value="CALL ME NOW" id="btn2">
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+    <footer></footer>
+</body>
+<script>
+    //$("header").load("header.html");
+    $("footer").load("footer.html");
+    $(function () {
+        var val1=$(".focus").eq(0).val().trim();
+        var val2=$(".focus").eq(1).val().trim();
+        $(".focus").on({
+            focusin: function () {
+                $(this).css({
+                    boxShadow:"darkgrey 0px 0px 2px 2px"
+                })
+            },
+            focusout:function () {
+                $(this).css({
+                    boxShadow:"none"
+                })
+            }
+        });
+        $("#btn1").hover(
+            function () {
+                $(this).stop().animate({
+                    backgroundColor:"#ff4c4c",
+                });
+            },function () {
+                $(this).stop().animate({
+                    backgroundColor:"#212121",
+                    border:"1px solid #333"
+                })
+            }
+        );
+        $("#btn2").hover(
+            function () {
+                $(this).stop().animate({
+                    backgroundColor:"#212121"
+                })
+            },function () {
+                $(this).stop().animate({
+                    backgroundColor:"#ff4c4c"
+                })
+            }
+        );
+        $("nav li>a").on({
+            mouseover: function () {
+                $(this).stop().animate({
+                    "color": "#ff4c4c",
+                }, 500)
+            },
+            mouseout: function () {
+                $(this).stop().animate({
+                    "color": "#ffffff",
+                }, 500)
+            }
+        })
+    })
+</script>
+</html>

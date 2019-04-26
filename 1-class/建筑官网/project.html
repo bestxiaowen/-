@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Project</title>
+    <link rel="stylesheet" href="css/project.css">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/bootstrap.css">
+    <!--<link rel="stylesheet" href="css/style.css">-->
+    <script src="js/jquery-1.11.3.js"></script>
+    <script src="js/bootstrap.js"></script>
+    <script src="js/jquery.color.js"></script>
+</head>
+
+<body>
+    <!--header-->
+    <div class="header">
+        <header>
+            <nav class="container-fluid">
+                <div class="container">
+                    <a href="index.html" class="col-lg-7 red">FABRICATOR</a>
+                    <ul class="col-lg-5">
+                        <li><a href="index.html">HOMT</a></li>
+                        <li><a href="about.html">ABOUT</a></li>
+                        <li><a href="project.html" class="red">PROJECT</a></li>
+                        <li><a href="more.html">MORE</a></li>
+                        <li><a href="contact.html">CONTACT</a></li>
+                    </ul>
+                </div>
+                <h5 class="page-header"></h5>
+            </nav>
+        </header>
+    </div>
+    <!--Our project-->
+    <div class="our_project">
+        <div class="container">
+            <p class="normal_p"><span>Our</span> Projects</p>
+            <div class="col-lg-3 hover">
+                <div>
+                    <img src="img/v1.jpg" alt="">
+                    <div class="msg">
+                        <h3>FABRICATOR</h3>
+                        <span>Neque porro quisquam est,qui dilirem ipsum.</SPAN>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3 hover">
+                <div>
+                    <img src="img/v2.jpg" alt="">
+                    <div class="msg">
+                        <h3>FABRICATOR</h3>
+                        <span>Neque porro quisquam est,qui dilirem ipsum.</SPAN>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3 hover">
+                <div>
+                    <img src="img/v3.jpg" alt="">
+                    <div class="msg">
+                        <h3>FABRICATOR</h3>
+                        <span>Neque porro quisquam est,qui dilirem ipsum.</SPAN>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3 hover">
+                <div>
+                    <img src="img/v4.jpg" alt="">
+                    <div class="msg">
+                        <h3>FABRICATOR</h3>
+                        <span>Neque porro quisquam est,qui dilirem ipsum.</SPAN>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3 hover">
+                <div>
+                    <img src="img/v5.jpg" alt="">
+                    <div class="msg">
+                        <h3>FABRICATOR</h3>
+                        <span>Neque porro quisquam est,qui dilirem ipsum.</SPAN>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3 hover">
+                <div>
+                    <img src="img/v6.jpg" alt="">
+                    <div class="msg">
+                        <h3>FABRICATOR</h3>
+                        <span>Neque porro quisquam est,qui dilirem ipsum.</SPAN>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3 hover">
+                <div>
+                    <img src="img/v7.jpg" alt="">
+                    <div class="msg">
+                        <h3>FABRICATOR</h3>
+                        <span>Neque porro quisquam est,qui dilirem ipsum.</SPAN>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3 hover">
+                <div>
+                    <img src="img/v8.jpg" alt="">
+                    <div class="msg">
+                        <h3>FABRICATOR</h3>
+                        <span>Neque porro quisquam est,qui dilirem ipsum.</SPAN>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3 hover">
+                <div>
+                    <img src="img/v9.jpg" alt="">
+                    <div class="msg">
+                        <h3>FABRICATOR</h3>
+                        <span>Neque porro quisquam est,qui dilirem ipsum.</SPAN>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3 hover">
+                <div>
+                    <img src="img/v10.jpg" alt="">
+                    <div class="msg">
+                        <h3>FABRICATOR</h3>
+                        <span>Neque porro quisquam est,qui dilirem ipsum.</SPAN>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3 hover">
+                <div>
+                    <img src="img/v11.jpg" alt="">
+                    <div class="msg">
+                        <h3>FABRICATOR</h3>
+                        <span>Neque porro quisquam est,qui dilirem ipsum.</SPAN>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3 hover">
+                <div>
+                    <img src="img/v12.jpg" alt="">
+                    <div class="msg">
+                        <h3>FABRICATOR</h3>
+                        <span>Neque porro quisquam est,qui dilirem ipsum.</SPAN>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--footer-->
+    <footer></footer>
+</body>
+<script>
+    //$("header").load("header.html");
+    
+    $(function () {
+        $("footer").load("footer.html");    
+        $("nav li>a").on({
+            mouseover: function () {
+                $(this).stop().animate({
+                    "color": "#ff4c4c",
+                }, 500)
+            },
+            mouseout: function () {
+                $(this).stop().animate({
+                    "color": "#ffffff",
+                }, 500)
+            },
+            click: function () {
+                $("li").find(".red").removeClass("red");
+                $(this).addClass("red")//.siblings().removeClass("red")
+            }
+        })
+        $(".hover").each(
+            function(){
+                $(this).hover(
+                    function(){
+                        $(this).children("div").children(".msg").stop().animate({
+                            bottom: "0"
+                        })
+                    },
+                    function(){
+                        $(this).children("div").children(".msg").stop().animate({
+                            bottom: "-70%"
+                        })
+                    }
+                )
+
+            }
+
+            // mouseover: function () {
+            //     $(".hover .msg").animate({
+            //         bottom: "0"
+            //     })
+            // }
+        )
+    })
+</script>
+
+</html>

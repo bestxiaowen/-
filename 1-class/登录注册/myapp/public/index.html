@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>主页</title>
+    <link rel="stylesheet" href="css/bootstrap.css">
+    <link rel="stylesheet" href="css/style.css">
+    <script src="js/jquery-1.11.3.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+</head>
+<body>
+    <div class="main">
+        <div class="container">
+            <h1>人机交互大作业。</h1>
+            <h2>姓名：闻航</h2>
+            <h2>学号：162208100052</h2>
+            <h2>老师：肖锋</h2>
+            <h2>作业题目：实现用户登录页面及其功能</h2>
+            <div>
+                <button type="button" class="btn btn-info" id="btn">点击此处进入登录页面</button>
+            </div>
+        </div>
+    </div>
+    <script>
+        $(function () {
+            $("#btn").click(function () {
+                window.location.href="login.html"
+            })
+        })
+    </script>
+</body>
+</html>

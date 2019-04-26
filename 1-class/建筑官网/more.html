@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>More</title>
+    <link rel="stylesheet" href="css/more.css">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/bootstrap.css">
+    <script src="js/jquery-1.11.3.js"></script>
+    <script src="js/bootstrap.js"></script>
+    <script src="js/jquery.color.js"></script>
+</head>
+<body>
+    <!--header-->
+    <div class="header">
+        <header>
+            <nav class="container-fluid">
+                <div class="container">
+                    <a href="index.html" class="col-lg-7 red">FABRICATOR</a>
+                    <ul class="col-lg-5">
+                        <li><a href="index.html">HOMT</a></li>
+                        <li><a href="about.html">ABOUT</a></li>
+                        <li><a href="project.html">PROJECT</a></li>
+                        <li><a href="more.html" class="red">MORE</a></li>
+                        <li><a href="contact.html">CONTACT</a></li>
+                    </ul>
+                </div>
+                <h5 class="page-header"></h5>
+            </nav>
+        </header>
+    </div>
+    <!--body-->
+    <div class="typography">
+        <div class="container">
+            <p class="normal_p"><span>Typography</span> </p>
+            <!--headings-->
+            <div class="col-lg-12">
+                <span class="head">Headings</span>
+                <div class="clearfix">
+                    <h1>h1. Bootstrap heading</h1>
+                    <p>Semibold 36px</p>
+                </div>
+                <div class="clearfix">
+                    <h2>h2. Bootstrap heading</h2>
+                    <p>Semibold 30px</p>
+                </div>
+                <div class="clearfix">
+                    <h3>h3. Bootstrap heading</h3>
+                    <p>Semibold 24px</p>
+                </div>
+                <div class="clearfix">
+                    <h4>h4. Bootstrap heading</h4>
+                    <p>Semibold 18px</p>
+                </div>
+                <div class="clearfix">
+                    <h5>h5. Bootstrap heading</h5>
+                    <p>Semibold 14px</p>
+                </div>
+                <div class="clearfix">
+                    <h6>h6. Bootstrap heading</h6>
+                    <p>Semibold 12px</p>
+                </div>
+
+            </div>
+            <!--Progress Bars-->
+            <div class="col-lg-12">
+                <span class="head">Progress Bars</span>
+            </div>
+        </div>
+    </div>
+    <footer></footer>
+</body>
+<script>
+    //$("header").load("header.html");
+    $("footer").load("footer.html")
+    $(function(){
+        $("nav li>a").on({
+            mouseover: function () {
+                $(this).stop().animate({
+                    "color": "#ff4c4c",
+                }, 500)
+            },
+            mouseout: function () {
+                $(this).stop().animate({
+                    "color": "#ffffff",
+                }, 500)
+            },
+            click: function () {
+                $("li").find(".red").removeClass("red");
+                $(this).addClass("red")//.siblings().removeClass("red")
+            }
+        })
+    })
+</script>
+</html>

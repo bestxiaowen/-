@@ -1,0 +1,91 @@
+body{
+    margin: 0;
+    padding: 0;
+}
+.about_us{
+    padding-bottom: 30px;
+}
+.about_us h3{
+    font-weight: 600;
+    font-size: 28px;
+}
+.about_us p{
+    padding: 6px 0;
+    color: #3e3e3e;
+    width: 100%;
+    letter-spacing: 0.7px;
+}
+.about_us p span{
+    color: #ff4c4c;
+}
+.about_us .right{
+    margin: 30px 0;
+}
+.about_us img{
+    width: 100%;
+}
+.icons{
+    padding: 50px 0;
+    background-image: url(../img/book3.jpg);
+    background-attachment: fixed;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+.icons h3{
+    color: #fff;
+    text-align: center;
+}
+.icons span{
+    color: #ff4c4c;
+    font-size: 65px;
+    display: block;
+    text-align: center;
+    margin: 30px auto;
+}
+.icons p{
+    padding: 6px 0;
+    width: 100%;
+    letter-spacing: 0.7px;
+    color: #fff;
+    text-align: center;
+}
+.our_team{
+
+}
+.our_team img{
+    width: 100%;
+}
+.main{
+    width: 80%;
+    margin: 30px auto;
+}
+.main h4{
+    font-size: 24px;
+    color: black;
+}
+.main>span{
+    font-size: 25px;
+    padding: 5px;
+    border-radius: 50%;
+}
+.main_icon{
+    margin: 20px 0;
+}
+.main_icon span{
+    color: #ff4c4c;
+    padding: 0 10px 0 0;
+}
+.main_icon p{
+    color: #4a4a4a;
+    font-size: 15px;
+    width: 100%;
+    padding: 0;
+    letter-spacing: 0.7px;
+}
+.main_icon a{
+    color: #337ab7;
+    font-size: 15px;
+    line-height: 12px;
+    font-weight: 400;
+    letter-spacing: 0.7px;
+}

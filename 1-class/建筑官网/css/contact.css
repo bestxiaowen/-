@@ -1,0 +1,87 @@
+body{
+    margin: 0;
+    padding: 0;
+}
+.contact_us{
+
+}
+.contact_us .left{
+    width: 80%;
+}
+.contact_us .h3{
+    color: #ff4c4c;
+    font-weight: 600;
+}
+.contact_us .input{
+    padding: 15px 0;
+}
+.contact_us .input p{
+    color: #333;
+    padding: 0;
+    margin: 0;
+    font-weight: 600;
+}
+.contact_us .input input{
+    width: 100%;
+    height: 40px;
+    border: 1px solid #333;
+    padding: 10px;
+}
+.contact_us .btn{
+    width: 100%;
+    padding: 10px 0;
+}
+.contact_us .btn input{
+    width: 100%;
+    height: 45px;
+    background-color: #212121;
+    color: white;
+    border: none;
+    font-weight: 700;
+    margin: 10px 0;
+    padding: 0 9px;
+}
+.contact_us .right{
+
+}
+.contact_us .right p{
+    color: #333;
+    padding: 12px 0;
+    width: 100%;
+    letter-spacing: 0.8px;
+}
+.contact_us .right p span{
+    color: #ff4c4c;
+}
+.contact_us .right p a{
+    color: #337ab7;
+}
+.contact_us .right input:nth-child(1){
+    border-top: none;
+    border-left: none;
+    border-right: none;
+    display: block;
+    width: 60%;
+    float: left;
+    letter-spacing: 0.8px;
+}
+.contact_us .right input:nth-child(2){
+    display: block;
+    width: 30% ;
+    float: left;
+    margin-left: 2%;
+    border: none;
+    letter-spacing: 0.8px;
+    background-color: #ff4c4c;
+    color: white;
+    font-weight: 600;
+}
+
+
+
+
+
+
+
+
+

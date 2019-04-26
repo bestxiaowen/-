@@ -1,0 +1,37 @@
+body{
+    margin: 0;
+    padding: 0;
+}
+.typography{
+
+}
+.typography .head{
+    color: #ff4c4c;
+    font-size: 40px;
+    font-weight: 600;
+}
+.typography .container>div{
+    padding: 50px 0;
+}
+.typography .container>div>div{
+    padding-left: 15px;
+    display: flex;
+    align-items: center;
+}
+.typography .clearfix p{
+    float: right;
+    width: 20%;
+    display: block;
+    color: #7d7d7c;
+}
+.typography h1,
+.typography h2,
+.typography h3,
+.typography h4,
+.typography h5,
+.typography h6{
+    color: #7d7d7c;
+    display: block;
+    width:80%;
+    float: left;
+}

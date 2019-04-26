@@ -1,0 +1,17 @@
+{
+  "name": "myapp",
+  "version": "1.0.0",
+  "description": "人机交互大作业",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "登录注册"
+  ],
+  "author": "闻航",
+  "license": "ISC",
+  "dependencies": {
+    "express-generator": "^4.16.0"
+  }
+}
