@@ -5,8 +5,36 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <style>
+        ul{
+            list-style: none
+        }
+        span{
+            margin: 10px;
+            line-height: 25px
+        }
+    </style>
 </head>
 <body>
-    
+        <!-- 1. 使用v-for 遍历99乘法表 -->
+    <div id="app">
+        <ul>
+            <li v-for="(row,m) in 9">
+                <span v-for="(col,n) in (m+1)">{{n+1}}*{{m+1}}={{(n+1)*(m+1)}}</span>
+            </li>
+        </ul>
+    </div>
+    <script>
+        const vm=new Vue({
+            el:"#app",
+            data:{
+
+            },
+            methods: {
+                
+            }
+        })
+    </script>
 </body>
 </html>

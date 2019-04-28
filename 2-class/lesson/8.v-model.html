@@ -20,13 +20,13 @@
             单向绑定 = output
             
          -->
-        <ul>
+        <!-- <ul>
             <li v-for="item in messageList">
                 {{item}}
             </li>
-        </ul>
+        </ul> -->
         <div>{{text}}</div>
-        <input type="text" v-model="text">
+        <input type="text" v-model="text1">
         <button v-on:click="handlePublish">发布列表</button>
     </div>
     <script>
@@ -34,14 +34,15 @@
             el:"#app",
             data:{
                 messageList:[],
-                text:"1111111"
+                text:"1111111",
+                text1:"你好"
             },
             methods: {
                 handlePublish(){
-                    console.log(1)
+                    console.log(this.text1)
                 },
                 handleInput(){
-                    console.log(this.text)
+                    console.log(this.text1)
                 }
             }
         })
