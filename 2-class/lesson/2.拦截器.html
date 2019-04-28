@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+<body>
+    <h1 id="h1"></h1>
+
+    <script>
+        const obj={
+            _name:"",
+            _age:"",
+            get name(){
+                console.log("有人在获取数据")
+                return this._name
+            },
+            get age(){
+                return this._age
+            },
+            set name(val){
+                console.log("有人在获取name 数据",val)
+                document.getElementById("h1").innerHTML=val
+                this._name=val;
+            },
+            set age(val){
+                this._age=val
+            }
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+
+<body>
+    <div id="app">
+        <ul>
+            <li v-for="item in list">
+                <div>
+                    name:{{item.name}}
+                    age:{{item.age}}
+                </div>
+                <ul>
+                    <li v-for="child in item.children">
+                        <div>
+                            name:{{child.name}}
+                            age:{{child.age}}
+                        </div>
+                    </li>
+                </ul>
+            </li>
+        </ul>
+    </div>
+</body>
+<script>
+    const vm=new Vue({
+        el:"#app",
+        data:{
+            list:[
+                {
+                    name:"张三",
+                    age:22,
+                    children:[
+                        {
+                            name:"小红",
+                            age:1
+                        },
+                        {
+                            name:"小黄",
+                            age:2
+                        }
+                    ]
+                },
+                {
+                    name:"李四",
+                    age:40
+                },
+                {
+                    name:"王五",
+                    age:62,
+                    children:[
+                        {
+                            name:"小红",
+                            age:1
+                        },
+                        {
+                            name:"小黄",
+                            age:2
+                        },
+                        {
+                            name:"小蓝",
+                            age:3
+                        }
+                    ]
+                }
+            ]
+        },
+        methods: {
+            
+        }
+    })
+</script>
+</html>
