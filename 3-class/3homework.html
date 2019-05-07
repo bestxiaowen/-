@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <style>
+        .switch{
+            width: 50px;
+            height: 20px;
+            border-radius: 20px;
+            background-color: #2d8cf0;
+            position: relative;
+            cursor: pointer;
+            transition:all .5s;
+        }
+        .bg{
+            background-color: gray!important;
+        }
+        .button{
+            width: 18px;
+            height: 18px;
+            border-radius: 50%;
+            background-color: white;
+            position: absolute;
+            top:1px;
+            left: 2px;
+            transition:all .5s;
+        }
+        .active{
+            left:30px;
+        }
+    </style>
+</head>
+<body>
+    <div id="app">
+        <div class="switch" @click="change" :class="{bg:onoff===true}">
+            <div class="button" :class="{active:onoff===true}"></div>
+        </div>
+    </div>
+    <script>
+        const vm=new Vue({
+            el:"#app",
+            data:{
+                onoff:false
+                
+            },
+            methods: {
+                change(){
+                    this.onoff=!this.onoff
+                }
+            }
+        })
+    </script>
+</body>
+</html>

@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <style>
+        .left,
+        .right {
+            width: 200px;
+            height: 400px;
+            border: 1px solid black;
+            border-radius: 5px;
+            float: left;
+            overflow: hidden;
+        }
+
+        button {
+            display: block;
+        }
+
+
+        .header {
+            width: inherit;
+            height: 50px;
+            border-bottom: 1px solid black;
+        }
+
+        ul {
+            list-style-type: none;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="app">
+        <div class="left">
+            <div class="header">
+                    <input 
+                    type="checkbox"
+                    v-model="status1"
+                    true-value="1"
+                    false-value="0"
+                    @click="change1"
+                >
+                {{status1}}
+                <span>源列表</span>
+                <span></span>
+                <span>{{arr1.length}}</span>
+            </div>
+            <div>
+                <ul>
+                    <li v-for="(item,index) in arr1">
+                        <input 
+                            type="checkbox" 
+                            v-model="item.checked"
+                            @click="toggle"
+                        >
+                        {{item.name}}
+                        {{item.checked}}
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div style="float:left;margin-top:180px">
+            <button @click="right">→</button>
+            <button @click="left">←</button>
+        </div>
+        <div class="right">
+            <div class="header">
+                <input 
+                    type="checkbox"
+                    v-model="status2"
+                    true-value="1"
+                    false-value="0"
+                    @click="change2"
+                >
+                {{status2}}
+                <span>源列表</span>
+                <span>{{arr2.length}}</span>
+            </div>
+            <div>
+                <ul>
+                    <li v-for="(item,index) in arr2">
+                        <input 
+                            type="checkbox" 
+                            v-model="item.checked"
+                            @click="toggle"
+                        >
+                        {{item.name}}
+                        {{item.checked}}
+                        
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <script>
+        const vm = new Vue({
+            el: "#app",
+            data: {
+                status1:0,
+                status2:0,
+                arr1: [
+                    {
+                        name: '选项1',
+                        checked: false
+                    },
+                    {
+                        name: '选项2',
+                        checked: false
+                    },
+                    {
+                        name: '选项3',
+                        checked: false
+                    }, {
+                        name: '选项4',
+                        checked: false
+                    }
+                ],
+                arr2: [
+                    {
+                        name: '选项5',
+                        checked: false
+                    },
+                    {
+                        name: '选项6',
+                        checked: false
+                    },
+                    {
+                        name: '选项7',
+                        checked: false
+                    }, {
+                        name: '选项8',
+                        checked: false
+                    }
+                ]
+            },
+            methods: {
+                change1(){
+                    console.log(this.status1)
+                    if(this.status1==0){
+                        for(var i=0;i<this.arr1.length;i++){
+                            this.arr1[i].checked=true
+                        }
+                        this.status1==1
+                    }else{
+                        for(var i=0;i<this.arr1.length;i++){
+                            this.arr1[i].checked=false
+                        }
+                        this.status1==0
+                    }
+                },
+                change2(){
+                    console.log(this.status2)
+                    if(this.status2==0){
+                        for(var i=0;i<this.arr2.length;i++){
+                            this.arr2[i].checked=true
+                        }
+                        this.status2==1
+                    }else{
+                        for(var i=0;i<this.arr2.length;i++){
+                            this.arr2[i].checked=false
+                        }
+                        this.status2==0
+                    }
+                },
+                right(){
+                    for(var i=0;i<this.arr1.length;i++){
+                        if(this.arr1[i].checked==true){
+                            var del=this.arr1.splice(i,1)
+                            this.arr2.push(del[0])
+                            i--
+                        }else{
+                            
+                        }
+                    }
+                    for(var i=0;i<this.arr2.length;i++){
+                        this.arr2[i].checked=false
+                    }
+                    console.log(this.arr2)
+                },
+                left(){
+                    for(var i=0;i<this.arr2.length;i++){
+                        if(this.arr2[i].checked==true){
+                            var del=this.arr2.splice(i,1)
+                            this.arr1.push(del[0])
+                            i--
+                        }
+                    }
+                    for(var i=0;i<this.arr1.length;i++){
+                        this.arr1[i].checked=false
+                    }
+                },
+                toggle(){
+                    this.checked=!this.checked
+                }
+            }
+        })
+    </script>
+</body>
+
+</html>

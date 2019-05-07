@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <style>
+        #app {
+            width: 300px;
+            height: 500px;
+            border: 1px solid black
+        }
+
+        .contain {
+            width: 280px;
+            height: 350px;
+            border: 1px solid black;
+            margin: 10px auto;
+        }
+
+        .user {
+            width: 280px;
+            height: 110px;
+            border: 1px solid black;
+            margin: 10px auto;
+        }
+
+        .send {
+            margin-left: 230px;
+        }
+    </style>
+</head>
+
+<body>
+    <!--2. 使用 v-for v-on v-model 制作一个聊天列表 (列表项目里包含一个删除按钮, 可以删除当前项目) -->
+    <div id="app">
+        <div class="contain">
+            <ul>
+                <li v-for="(item,index) in messageList">
+                    {{item.text}}
+                <button @click="del(index)">删除</button>
+                </li>
+            </ul>
+        </div>
+        <div class="user">
+            <textarea cols="37" rows="5" v-model="msg" id="textarea"
+                @keydown.ctrl.enter.exact="click"
+                @keydown.esc="clear"
+            >
+            </textarea>
+            <button 
+                @click="click" 
+                class="send"
+            >发送</button>
+        </div>
+    </div>
+    <script>
+        const vm = new Vue({
+            el: "#app",
+            data: {
+                messageList: [
+                    { text: "你好" }
+                ],
+                msg: "你好"
+            },
+            methods: {
+                click(){
+                    if(this.msg==""){
+
+                    }else{
+                        this.messageList.push({text:this.msg})
+                        this.msg=""
+                    }
+                },
+                del(i){
+                    this.messageList.splice(i,1)
+                },
+                clear(){
+                    this.messageList.splice(0)
+                }
+                
+            }
+        })
+    </script>
+</body>
+
+</html>
