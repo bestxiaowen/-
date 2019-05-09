@@ -62,12 +62,16 @@
             type="text" 
             v-model="val"
             @keydown.down="down"
+            @keydown.up="up"
+            @keydown.enter="enter"
         >
         <ul>
             <li 
                 v-for="(item,index) in arr2"
+                :class="{bg:listIndex===index}"
                 @mouseover="hover(index,$event)"
                 @mouseout="out(index,$event)"
+                @click="click(index)"
             >{{item}}</li>
         </ul>
     </div>
@@ -78,7 +82,7 @@
             el: '#app',
             data: {
                 val: "",
-                num:'',
+                listIndex:0,
                 arr1: [
                     '张三',
                     '李四',
@@ -101,22 +105,37 @@
                 },
                 out(i,e){
                     e.currentTarget.classList.remove("bg")
+                },
+                down(){
+                    if(this.listIndex>=this.arr2.length-1){
+                        this.listIndex=0
+                    }else{
+                        this.listIndex++
+                    }
+                    console.log(this.listIndex)
+                    console.log(this.arr2.length)
+                },
+                up(){
+                    if(this.listIndex==0){
+                        this.listIndex=this.arr2.length-1
+                    }else{
+                        this.listIndex--
+                    }
+                    console.log(this.listIndex)
+                    console.log(this.arr2.length)
+                },
+                enter(){
+                    this.val=this.arr2[this.listIndex]
+                },
+                click(i){
+                    this.val=this.arr2[i]
+                    console.log(i)
                 }
                 
             },
             watch: {
-                arr1:{
-                    handler(newVal,oldVal){
-                        this.arr1.forEach(item => {
-                            //let replaceReg = new RegExp(highlight, 'gi')
-                            let reg=new RegExp(this.val,'g')
-                            console.log(item.match(this.re))
-                            this.arr2.push(item.match(this.re))
-                        });
-                    },
-                    deep:true
-                },
                 val(){
+                    this.arr2=[]
                     this.arr1.forEach(item =>{
                         let reg=new RegExp(this.val,'g')
                         let arr3=item.match(reg)

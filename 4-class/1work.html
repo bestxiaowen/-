@@ -18,7 +18,7 @@
         li{
             font-size: 20px;
         }
-        li:hover{
+        .bg{
             background-color: gray;
             color: white;
         }
@@ -39,13 +39,23 @@
         ![img](./img/mail2.jpg)
          -->
     <div id="app">
-        <input type="text" v-model="val">
+        <input 
+            type="text" 
+            v-model="val" 
+            @input="input"
+            @keydown.down="down"
+            @keydown.up="up"
+            @keydown.enter="enter"
+        >
         <ul>
             <li 
                 v-if="val!==''" 
-                v-for="(item,index) in arr"
+                :class="{bg:listIndex==index}"
+                v-for="(item,index) in arr1"
                 @click="change(index)"
-            >{{val+item}}</li>
+                @mouseover="hover(index,$event)"
+                @mouseout="out(index,$event)"
+            >{{item}}</li>
         </ul>
     </div>
     <script>
@@ -53,26 +63,65 @@
             el: '#app',
             data: {
                 val:"",
+                listIndex:0,
                 arr:[
                     "@qq.com",
                     "@163.com",
                     "@126.com",
                     "@xiaowen.com",
                     "@web.com"
-                ]
-              
+                ],
+                arr1:[]
             },
             methods: {
                 change(i){
-                    console.log(this.arr[i])
-                    this.val=this.val+this.arr[i]
+                    console.log(this.arr1[i])
+                    console.log(i)
+                    this.val=this.arr1[i]
+                    console.log(this.arr1)
+                },
+                input(){
+                    this.arr1=[]
+                    this.arr.forEach((item,index) =>{
+                        console.log(index)
+                        this.arr1.push(this.val+this.arr[index])
+                    })
+                    console.log(this.arr1)
+                },
+                hover(i,e){
+                    e.currentTarget.classList.add("bg")
+                },
+                out(i,e){
+                    e.currentTarget.classList.remove("bg")
+                },
+                down(){
+                    this.listIndex++
+                    if(this.listIndex>=this.arr1.length){
+                        this.listIndex=0
+                    }
+                },
+                up(){
+                    this.listIndex--
+                    if(this.listIndex<0){
+                        this.listIndex=this.arr1.length-1
+                    }
+                },
+                enter(){
+                    this.val=this.arr1[this.listIndex]
                 }
             },
             watch:{
                 val(newVal,oldVal){
                     console.log('变化后的值:', newVal)
                     console.log('变化前的值:', oldVal)
-                    return oldVal;
+                    
+
+                    //return oldVal;
+                },
+                arr:{
+                    handler(newVal,oldVal){
+
+                    }
                 }
             }
         })
