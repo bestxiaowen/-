@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="./bootstrap/dist/css/bootstrap.css">
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+<body>
+    <div id="app">
+
+    </div>
+    <script>
+        Vue.component("Table",{
+            template:`
+                <table
+                    :class="['table',{
+                        'table-striped':striped,
+                        'table-bordered':border,
+                        'table-hover':hover,
+                        'table-condensed':condensed
+                    }]"
+                >
+                    <tbody>
+                        <tr><th v-for='item in colums'>{{item}}</th></tr>
+                        <tr v-for="item in data">
+                            <td v-for='data in item'>{{data}}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            `,
+            props:{
+                striped:Boolean,
+                border:Boolean,
+                hover:Boolean,
+                condensed:Boolean,
+                // colums:{
+                //     validator(value){
+                //         return typeof value==='object' 
+                //     }
+                // },
+                colums:[Object,Array],
+                data:Array
+            },
+            computed: {
+                
+            }
+
+        })
+        
+        const vm=new Vue({
+            el:"#app",
+            data:{
+                head:[
+                        // <th>标题</th>,
+                        // <th>标题</th>,
+                        // <th>标题</th>,
+                        // <th>标题</th>
+                        '序号',
+                        '姓名',
+                        '年龄',
+                        '班级'
+                ],
+                data:[
+                    {
+                        num:1,
+                        name:'张三',
+                        age:33,
+                        class:'一年级'
+                    },
+                    {
+                        num:2,
+                        name:'李四',
+                        age:33,
+                        class:'二年级'
+                    },
+                    {
+                        num:3,
+                        name:'老王',
+                        age:33,
+                        class:'三年级'
+                    }
+
+                ]
+
+            },
+            methods: {
+                
+            },
+            template:`
+            <div id="app">
+                <Table striped border hover condensed :colums="head" :data="data">
+                </Table>
+            </div>
+            `
+        })
+    </script>
+</body>
+</html>

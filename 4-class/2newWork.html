@@ -61,13 +61,13 @@
         <input 
             type="text" 
             v-model="val"
-            @keydown.down="down"
-            @keydown.up="up"
+            @keydown.down.prevent="down"
+            @keydown.up.prevent="up"
             @keydown.enter="enter"
         >
         <ul>
             <li 
-                v-for="(item,index) in arr2"
+                v-for="(item,index) in searchList"
                 :class="{bg:listIndex===index}"
                 @mouseover="hover(index,$event)"
                 @mouseout="out(index,$event)"
@@ -91,7 +91,6 @@
                     '金科',
                     '张四'
                 ],
-                arr2:[],
                 //re: "/"+this.val+"/g",
                 //re: /this.val/g,
                 //reg:new RegExp(this.val,"g"),
@@ -107,54 +106,63 @@
                     e.currentTarget.classList.remove("bg")
                 },
                 down(){
-                    if(this.listIndex>=this.arr2.length-1){
+                    if(this.listIndex>=this.searchList.length-1){
                         this.listIndex=0
                     }else{
                         this.listIndex++
                     }
-                    console.log(this.listIndex)
-                    console.log(this.arr2.length)
                 },
                 up(){
                     if(this.listIndex==0){
-                        this.listIndex=this.arr2.length-1
+                        this.listIndex=this.searchList.length-1
                     }else{
                         this.listIndex--
                     }
-                    console.log(this.listIndex)
-                    console.log(this.arr2.length)
                 },
                 enter(){
-                    this.val=this.arr2[this.listIndex]
-                    this.arr2=[]
+                    this.val=this.searchList[this.listIndex]
                 },
                 click(i){
-                    this.val=this.arr2[i]
+                    this.val=this.searchList[i]
                     console.log(i)
-                    this.arr2=[]
                 }
                 
             },
-            watch: {
-                val(){
-                    this.arr2=[]
-                    this.arr1.forEach(item =>{
-                        let reg=new RegExp(this.val,'g')
-                        let arr3=item.match(reg)
-                        if(arr3===null){
+            // watch: {
+            //     val(){
+            //         this.arr2=[]
+            //         this.arr1.forEach(item =>{
+            //             let reg=new RegExp(this.val,'g')
+            //             let arr3=item.match(reg)
+            //             if(arr3===null){
                             
-                        }else if(this.val==""){
-                            this.arr2=[]
-                        }else{
-                            arr3[0]=item
-                            this.arr2.push(arr3[0])
-                        }
-                        console.log(this.arr2)
-                        console.log(arr3)
-                        console.log(item)
-                        console.log(this.val)
-                        console.log(reg)
+            //             }else if(this.val==""){
+            //                 this.arr2=[]
+            //             }else{
+            //                 arr3[0]=item
+            //                 this.arr2.push(arr3[0])
+            //             }
+            //             console.log(this.arr2)
+            //             console.log(arr3)
+            //             console.log(item)
+            //             console.log(this.val)
+            //             console.log(reg)
+            //         })
+            //     }
+            // }
+            computed: {
+                searchList:{
+                    get(){
+                        if(!this.val) return []
+                    return this.arr1.filter(item =>{
+                        return new RegExp(this.val).test(item)
                     })
+                    },
+                    set(){
+                    }
+                    
+
+                    
                 }
             }
         })

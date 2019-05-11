@@ -42,9 +42,8 @@
         <input 
             type="text" 
             v-model="val" 
-            @input="input"
-            @keydown.down="down"
-            @keydown.up="up"
+            @keydown.down.prevent="down"
+            @keydown.up.prevent="up"
             @keydown.enter="enter"
         >
         <ul>
@@ -71,8 +70,7 @@
                     "@126.com",
                     "@xiaowen.com",
                     "@web.com"
-                ],
-                arr1:[]
+                ]
             },
             methods: {
                 change(i){
@@ -80,18 +78,17 @@
                     console.log(i)
                     this.val=this.arr1[i]
                     console.log(this.arr1)
-                    this.arr1=[]
                 },
-                input(){
-                    //这个可以放在computed里面
-                    this.arr1=[]
-                    this.arr.forEach((item,index) =>{
-                        console.log(index)
-                        this.arr1.push(this.val+this.arr[index])
-                    })
-                    console.log(this.arr1)
-                    //console.log(newVal)
-                },
+                // input(){
+                //     //这个可以放在computed里面
+                //     this.arr1=[]
+                //     this.arr.forEach((item,index) =>{
+                //         console.log(index)
+                //         this.arr1.push(this.val+this.arr[index])
+                //     })
+                //     console.log(this.arr1)
+                //     //console.log(newVal)
+                // },
                 hover(i,e){
                     e.currentTarget.classList.add("bg")
                 },
@@ -112,23 +109,15 @@
                 },
                 enter(){
                     this.val=this.arr1[this.listIndex]
-                    this.arr1=[]
                 }
             },
-            watch:{
-                val(newVal,oldVal){
-                    console.log('变化后的值:', newVal)
-                    console.log('变化前的值:', oldVal)
-                    // if(oldVal===""){
-                    //     this.newVal=newVal
-                    // }
-
-                    //return oldVal;
-                },
-                arr:{
-                    handler(newVal,oldVal){
-
-                    }
+            computed: {
+                arr1(){
+                    if(!this.val) return []
+                    if(/@/.test(this.val)) return []
+                    return this.arr.map(item =>{
+                        return this.val + item
+                    })
                 }
             }
         })

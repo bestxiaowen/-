@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="./bootstrap/dist/css/bootstrap.css">
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <style>
+        h1{
+            font-size: 5px
+        }
+    </style>
+</head>
+<body>
+    <div id="app">
+        <!-- <span style="font-size: 15px" class="www"></span> -->
+    </div>
+    <script>
+        Vue.component("Icon",{
+            template:`
+                <span
+                    :style="[{color:color},{fontSize:size}]"
+                    :class="['glyphicon',iconName]"
+                >
+
+                </span>
+            `,
+            props:{
+                name:String,
+                size:String,
+                color:String
+            },
+            computed:{
+                iconName(){
+                    return 'glyphicon-'+this.name
+                }
+            }
+        })
+
+        const vm=new Vue({
+            el:"#app",
+            data:{
+
+            },
+            computed: {
+                
+            },methods: {
+                
+            },
+            template:`
+            <div id="app">
+                <Icon name='bishop' size='40px' color='red'></Icon>
+                <Icon name='home' size='60px' color='blue'></Icon>
+                <Icon name='ok' size='20px' color='green'></Icon>
+            </div>
+            `
+        })
+    </script>
+</body>
+</html>
