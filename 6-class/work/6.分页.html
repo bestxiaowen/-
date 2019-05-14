@@ -19,10 +19,27 @@
             margin: 0 10px;
             text-align: center;
         }
+        button:hover{
+            border: 1px solid #2d8cf0;
+        }
         .active{
-            border: 1px solid blue;
-            color: blue;
+            border: 1px solid #2d8cf0;
+            color: #2d8cf0;
             font-weight: bold;
+        }
+        .prve{
+            color: red;
+            border: none;
+        }
+        .prve:hover{
+            border: none;
+        }
+        .next{
+            color: red;
+            border: none;
+        }
+        .next:hover{
+            border: none;
         }
     </style>
 </head>
@@ -47,15 +64,18 @@
                 <button class="normal" @click="prve"><</button>
                 <button 
                     v-for="(item,index) in num" 
-                    :class="['normal',{active:pageIndex==index}]"
+                    v-if="index===pageIndex||index===pageIndex-1||index===pageIndex-2||index===pageIndex+1||index===pageIndex-3||index===pageIndex+3||index===pageIndex+2||index===0||index===num-1"
+                    :index="index"
+                    :class="['normal',{active:pageIndex===index},{prve:index===pageIndex-3},{next:index===pageIndex+3}]"
                     @click="click(index)"
-                >{{index+1}}</button>
+                >{{item}}</button>
                 <button class="normal" @click="next">></button>
             </div>
             `,
             methods: {
                 click(i){
                     console.log(i)
+                    this.pageIndex=i
                 },
                 prve(){
                     if(this.pageIndex>0){
@@ -70,6 +90,10 @@
                     console.log(this.pageIndex)
                 }
             },
+            computed: {
+                
+                
+            },
             watch: {
                 pageNum(v){
                     this.num=v
@@ -81,12 +105,13 @@
                     console.log(this.num)
                     console.log(typeof this.num)
                 }
-            }
+            },
+            
         })
         const vm = new Vue({
             el: '#app',
             data: {
-                pageNum:5,
+                pageNum:10,
             },
             template:`
             <div>
