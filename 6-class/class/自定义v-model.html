@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="../bootstrap/dist/css/bootstrap.css">
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+<body>
+    <div id="app">
+        
+    </div>
+
+    <script>
+        const iSwitch={
+            props:{
+                value:Boolean
+            },
+            data(){
+                return {
+                    check:this.value
+                }
+            },
+            watch: {
+                value(value,oldValue){
+                    this.check=value
+                },
+                check(value,oldValue){
+                    this.$emit('input',value)
+                }
+            },methods: {
+                
+            },
+            template:`
+                <input type="checkbox" v-model="check"/>
+            `
+        }
+        const vm = new Vue({
+            el: '#app',
+            data: {
+                selected:false
+            },
+            template:`
+            <div>
+                {{selected}}
+                <iSwitch v-model='selected'/>
+            </div>
+            `,
+            methods:{
+
+            },
+            components: {
+                iSwitch
+            }
+        })
+    </script>
+</body>
+</html>

@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="../bootstrap/dist/css/bootstrap.css">
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <style>
+        .normal{
+            width: 30px;
+            height: 30px;
+            border-radius: 4px;
+            border: 1px solid black;
+            background-color: white;
+            cursor: pointer;
+            float: left;
+            margin: 0 10px;
+            text-align: center;
+        }
+        .active{
+            border: 1px solid blue;
+            color: blue;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <div id="app">
+        
+    </div>
+
+    <script>
+        Vue.component("page",{
+            props: {
+                pageNum:[Number,String]
+            },
+            data(){
+                return {
+                    num:this.pageNum,
+                    pageIndex:0
+                }
+            },
+            template:`
+            <div>
+                <button class="normal" @click="prve"><</button>
+                <button 
+                    v-for="(item,index) in num" 
+                    :class="['normal',{active:pageIndex==index}]"
+                    @click="click(index)"
+                >{{index+1}}</button>
+                <button class="normal" @click="next">></button>
+            </div>
+            `,
+            methods: {
+                click(i){
+                    console.log(i)
+                },
+                prve(){
+                    if(this.pageIndex>0){
+                        this.pageIndex--
+                    }
+                    console.log(this.pageIndex)
+                },
+                next(){
+                    if(this.pageIndex<this.num-1){
+                        this.pageIndex++
+                    }
+                    console.log(this.pageIndex)
+                }
+            },
+            watch: {
+                pageNum(v){
+                    this.num=v
+                },
+                num(v){
+                    this.$emit("changeNum",Number(v))
+                    console.log(v)
+                    console.log(typeof v)
+                    console.log(this.num)
+                    console.log(typeof this.num)
+                }
+            }
+        })
+        const vm = new Vue({
+            el: '#app',
+            data: {
+                pageNum:5,
+            },
+            template:`
+            <div>
+            <page :pageNum="pageNum" @changeNum="change"></page>
+            <input v-model="pageNum">
+            </div>
+            `,
+            methods:{
+                change(v){
+                    this.pageNum=v
+                }
+            }
+        })
+    </script>
+</body>
+</html>

@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="../bootstrap/dist/css/bootstrap.css">
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+<body>
+    <div id="app">
+        
+    </div>
+
+    <script>
+        Vue.component("c1",{
+            data(){
+                return {
+                    value:''
+                }
+            },
+            template:`
+                <div>
+                    c1
+                    <input v-model="value"/>
+                </div>
+            `
+        })
+        Vue.component("c2",{
+            data(){
+                return {
+                    value:''
+                }
+            },
+            template:`
+                <div>
+                    c2
+                    <input v-model="value" />
+                </div>
+            `
+        })
+        Vue.component("c3",{
+            data(){
+                return {
+                    value:''
+                }
+            },
+            template:`
+                <div>
+                    c3
+                    <input v-model="value"/>
+                </div>
+            `
+        })
+        const vm = new Vue({
+            el: '#app',
+            data: {
+                value:'c1',
+                list:[
+                    'c1',
+                    'c2',
+                    'c3',
+                ]
+            },
+            template:`
+            <div>
+                <keep-alive>
+                    <component :is="value" />
+                </keep-alive>
+                <button @click="value=item" v-for="item in list">{{item}}</button>
+            </div>
+            `
+        })
+    </script>
+</body>
+</html>

@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="../bootstrap/dist/css/bootstrap.css">
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <style>
+            .card {
+                width: 500px;
+                height: 300px;
+                border: 1px solid #000;
+                border-radius: 5px;
+            }
+            .card .header {
+                height: 50px;
+                border-bottom: 1px solid #000;
+                display: flex;
+                justify-content: space-between;
+            }
+            .card .header h2{
+                line-height: 50px;
+                margin: 0 0 0 10px;
+                padding: 0;
+            }
+            .card .header span{
+                line-height: 50px;
+                color: aqua;
+                margin: 0 10px 0 0;
+            }
+            .card .content {
+                height: 249px;
+                overflow: auto
+            }
+        </style>
+</head>
+<body>
+    <div id="app">
+        
+    </div>
+
+    <script>
+        const Card={
+            props: {
+                title:String,
+                icon:String,
+                content:Array
+            },
+            data(){
+                return {
+                    iTitle:this.title,
+                    Iicon:this.icon,
+                    arr:{
+                        ...this.content
+                    }
+                }
+            },
+            template:`
+            <div class="card">
+                <div class="header">
+                    <slot name="header" />
+                </div>
+                <div class="content">
+                    <slot name="content" />
+                </div>
+            </div>
+            `,
+
+        }
+        const vm = new Vue({
+            el: '#app',
+            data: {
+                title:"这是标题",
+                icon:"change",
+                content:[
+                    "内容一",
+                    "内容二",
+                    "内容三",
+                    "内容三",
+                    "内容三",
+                    "内容三",
+                    "内容三",
+                    "内容三",
+                    "内容三",
+                    "内容三",
+                    "内容三",
+                    "内容三",
+                    "内容三",
+                    "内容三",
+                    "内容三",
+                    "内容四"
+                ]
+            },
+            components: {
+                Card
+            },
+            template:`
+            <Card>
+                <template slot="header">
+                    <h2>{{title}}</h2>
+                    <span>{{icon}}</span>
+                </template>
+                <template slot="content">
+                    <ul>
+                        <li v-for="item in content">{{item}}</li>
+                    </ul>
+                </template>
+            </Card>
+            `
+        })
+    </script>
+</body>
+</html>

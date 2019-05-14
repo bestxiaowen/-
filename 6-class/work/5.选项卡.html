@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="../bootstrap/dist/css/bootstrap.css">
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <style>
+    .title{
+        border: 1px solid black;
+        border-bottom: none;
+        float: left;
+        cursor: pointer;
+        margin: 0 10px;
+    }
+    </style>
+</head>
+<body>
+    <div id="app">
+        
+    </div>
+
+    <script>
+        Vue.component("part1",{
+            props: {
+
+            },
+            data(){
+                return {
+                    value:"内容1"
+                }
+            },
+            template:`
+            <div>
+            <textarea v-model="value"></textarea>
+            </div>
+            `
+        })
+        Vue.component("part2",{
+            props: {
+
+            },
+            data(){
+                return {
+                    value:"内容2"
+                }
+            },
+            template:`
+            <div>
+            <textarea v-model="value"></textarea>
+            </div>
+            `
+        })
+        Vue.component("part3",{
+            props: {
+
+            },
+            data(){
+                return {
+                    value:"内容3"
+                }
+            },
+            template:`
+            <div>
+            <textarea v-model="value"></textarea>
+            </div>
+            `
+        })
+        const vm = new Vue({
+            el: '#app',
+            data: {
+                value:"part1",
+                list:[
+                    "part1",
+                    "part2",
+                    "part3"
+                ]
+            },
+            template:`
+            <div>
+                <div class="title" v-for="item in list" @click="value=item">{{item}}</div>
+                <keep-alive>
+                    <component :is="value" />
+                </keep-alive>
+            </div>
+            `,
+            methods: {
+                
+            }
+        })
+    </script>
+</body>
+</html>

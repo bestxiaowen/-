@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <style>
+        ul {
+            width: 200px;
+            padding: 0;
+            margin: 0;
+            list-style: none;
+            border: 1px solid black;
+            border-top: none;
+        }
+
+        li {
+            font-size: 20px;
+        }
+
+        .bg {
+            background-color: gray;
+            color: white;
+        }
+
+        input {
+            width: 200px;
+            height: 22px;
+            border: 1px solid black;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- ### 二、编写一个搜索功能
+
+    ```js
+    [
+    '张三',
+    '李四',
+    '老王',
+    '赵柳',
+    '金科',
+    '张四'
+    ]
+    ```
+
+    要求：
+
+    1. 在输入框输入内容的时候 自动列出跟上面内容相匹配的值
+    比如我输入四 就能匹配出 李四和张四 的候选列表
+    比如我输入张就能匹配出 '张三' '张四' 的候选列表
+
+    2. 可以通过键盘上下选择候选列表
+
+    3. 使用键盘上下按键时 可以在候选项中上下选中候选项 按回车键时可以选中候选项的内容到输入框中 -->
+    <div id="app">
+        
+    </div>
+    <script>
+        Vue.component("InputSearch",{
+            props: {
+                value:String,
+            },
+            data(){
+                return {
+                    val:this.value,
+                    listIndex:0,
+                    arr1: [
+                    '张三',
+                    '李四',
+                    '老王',
+                    '赵柳',
+                    '金科',
+                    '张四'
+                    ],
+                }
+            },
+            watch:{
+                value(v){
+                    this.val=v
+                },
+                val(v){
+                    this.$emit("InputChange",v)
+                }
+            },
+            methods:{
+                hover(i,e){
+                    console.log(i)
+                    console.log(e.currentTarget)
+                    e.currentTarget.classList.add("bg")
+                    //e.currentTarget.className+="bg"
+                },
+                out(i,e){
+                    e.currentTarget.classList.remove("bg")
+                },
+                down(){
+                    if(this.listIndex>=this.searchList.length-1){
+                        this.listIndex=0
+                    }else{
+                        this.listIndex++
+                    }
+                },
+                up(){
+                    if(this.listIndex==0){
+                        this.listIndex=this.searchList.length-1
+                    }else{
+                        this.listIndex--
+                    }
+                },
+                enter(){
+                    this.val=this.searchList[this.listIndex]
+                    console.log(this.searchList)
+                    this.searchList=[]
+                },
+                click(i){
+                    this.val=this.searchList[i]
+                    console.log(i)
+                }
+
+            },
+            computed: {
+                searchList:{
+                    get(){
+                        var reg=new RegExp(this.val)
+                        if(!this.val) return []
+                        return this.arr1.filter(item =>{
+                            return new RegExp(this.val).test(item)
+                        })
+                    },
+                    set(){
+                    }
+                }
+            },
+            template:`
+            <div>
+                <input 
+                    type="text" 
+                    v-model="val"
+                    @keydown.down.prevent="down"
+                    @keydown.up.prevent="up"
+                    @keydown.enter="enter"
+                >
+                <ul>
+                    <li 
+                        v-for="(item,index) in searchList"
+                        :class="{bg:listIndex===index}"
+                        @mouseover="hover(index,$event)"
+                        @mouseout="out(index,$event)"
+                        @click="click(index)"
+                    >{{item}}</li>
+                </ul>
+            </div>
+            `
+        })
+        const vm = new Vue({
+            el: '#app',
+            data: {
+                val: "",
+                //re: "/"+this.val+"/g",
+                //re: /this.val/g,
+                //reg:new RegExp(this.val,"g"),
+            },
+            template:`
+            <div>
+                <InputSearch v-model="val" @InputChange="handleChange"></InputSearch>
+            </div>
+            `,
+            methods: {
+                handleChange(v){
+                    this.val=v
+                    console.log(this.val)
+                }
+            },
+            
+        })
+    </script>
+</body>
+
+</html>

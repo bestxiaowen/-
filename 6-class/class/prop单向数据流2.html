@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="../bootstrap/dist/css/bootstrap.css">
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+<body>
+    <div id="app">
+        
+    </div>
+
+    <script>
+        const Test={
+            props:{
+                title:String
+            },
+            data(){
+                return {
+                    iTitle:this.title
+                }
+            },
+            watch: {
+                title(v){
+                    this.iTitle=v
+                },
+                iTitle(v){
+                    console.log("iTitle改变了")
+                    this.$emit('change',v)
+                }
+            },
+            methods: {
+                handleClick(){
+                    console.log("iTitle改变了")
+                    this.iTitle='标题一个'
+                }
+            },
+            template:`
+                <div @click='handleClick'>
+                    <h1>{{title}}</h1>
+                    <input v-model="iTitle"/>
+                </div>
+            `
+        }
+        const vm = new Vue({
+            el: '#app',
+            data: {
+                title:"标题一个"
+            },
+            components: {
+                Test
+            },
+            template:`
+                <div>
+                    <input v-model="title">
+                    <br/>
+                    ----------------
+                    <Test @change="handeleChange" :title="title"/>
+                </div>
+            `,
+            methods:{
+                handeleChange(v){
+                    this.title=v
+                }
+            }
+        })
+    </script>
+</body>
+</html>

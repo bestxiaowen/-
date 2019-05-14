@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <style>
+        ul{
+            width: 200px;
+            padding: 0;
+            margin: 0;
+            list-style: none;
+            border: 1px solid black;
+            border-top: none;
+        }
+        li{
+            font-size: 20px;
+        }
+        .bg{
+            background-color: gray;
+            color: white;
+        }
+        input{
+            width: 200px;
+            height: 22px;
+            border: 1px solid black;
+        }
+    </style>
+</head>
+<body>
+        <!-- ### 一、编写一个自动补全邮箱的功能
+        要求：
+            1. 在输入框输入内容时候自动 列出 输入框的内容+不同邮箱后缀名称的候选项
+            2. 鼠标选择候选项时自动填充到输入框中
+            3. 使用键盘上下按键时 可以在候选项中上下选中候选项 按回车键时可以选中候选项的内容到输入框中
+        ![img](./img/mail1.jpg)
+        ![img](./img/mail2.jpg)
+         -->
+    <div id="app">
+        
+    </div>
+    <script>
+        Vue.component("InputEmail",{
+            props:{
+                value:String
+            },
+            data(){
+                return {
+                    arr:[
+                    "@qq.com",
+                    "@163.com",
+                    "@126.com",
+                    "@xiaowen.com",
+                    "@web.com"
+                    ],
+                    listIndex:0,
+                    val:this.value
+                }
+            },
+            template:`
+            <div>
+            <input 
+                type="text" 
+                v-model="val" 
+                @keydown.down.prevent="down"
+                @keydown.up.prevent="up"
+                @keydown.enter="enter"
+            >
+            <ul>
+                <li 
+                    v-if="val!==''" 
+                    :class="{bg:listIndex==index}"
+                    v-for="(item,index) in arr1"
+                    @click="change(index)"
+                    @mouseover="hover(index,$event)"
+                    @mouseout="out(index,$event)"
+                >{{item}}</li>
+            </ul>
+            </div>
+            `,
+            watch: {
+                value(v){
+                    this.val=v
+                },
+                val(v){
+                    this.$emit("changeVal",v)
+                }
+            },
+            computed: {
+                arr1(){
+                    if(!this.val) return []
+                    if(/@/.test(this.val)) return []
+                    return this.arr.map(item =>{
+                        return this.val + item
+                    })
+                }
+            },
+            methods:{
+                change(i){
+                    console.log(this.arr1[i])
+                    console.log(i)
+                    this.val=this.arr1[i]
+                    console.log(this.arr1)
+                },
+                hover(i,e){
+                    e.currentTarget.classList.add("bg")
+                },
+                out(i,e){
+                    e.currentTarget.classList.remove("bg")
+                },
+                down(){
+                    this.listIndex++
+                    if(this.listIndex>=this.arr1.length){
+                        this.listIndex=0
+                    }
+                },
+                up(){
+                    this.listIndex--
+                    if(this.listIndex<0){
+                        this.listIndex=this.arr1.length-1
+                    }
+                },
+                enter(){
+                    this.val=this.arr1[this.listIndex]
+                }
+            },
+            
+        })
+        const vm = new Vue({
+            el: '#app',
+            data: {
+                val:"",
+                //newVal:'',
+                
+            },
+            methods: {
+                handleChange(v){
+                    this.val=v
+                }
+            },
+            template:`
+            <div>
+            <InputEmail v-model="val" @changeVal="handleChange"></InputEmail>
+            </div>
+            `
+            
+        })
+    </script>
+</body>
+</html>

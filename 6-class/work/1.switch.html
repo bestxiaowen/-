@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <style>
+        .switch{
+            width: 50px;
+            height: 22px;
+            border-radius: 22px;
+            background-color: #2d8cf0;
+            position: relative;
+            cursor: pointer;
+            transition:all .5s;
+        }
+        .bg{
+            background-color: gray!important;
+        }
+        .button{
+            width: 18px;
+            height: 18px;
+            border-radius: 50%;
+            background-color: white;
+            position: absolute;
+            top:2px;
+            left: 2px;
+            transition:all .5s;
+        }
+        .active{
+            left:30px;
+        }
+    </style>
+</head>
+<body>
+    <div id="app">
+        
+    </div>
+    <script>
+        Vue.component('ISwitch',{
+            props:{
+                onoff:Boolean
+            },
+            data(){
+                return {
+                    check:this.onoff
+                }
+            },
+            template:`
+            <div class="switch" @click="change" :class="{bg:check===true}">
+                <div class="button" :class="{active:check===true}"></div>
+            </div>
+            `,
+            watch: {
+                onoff(v){
+                    this.check=v
+                },
+                check(v){
+                    this.$emit('changed',v)
+                }
+            },
+            methods:{
+                change(){
+                    this.check=!this.check
+                }
+            }
+        })
+        const vm=new Vue({
+            el:"#app",
+            data:{
+                onoff:false
+            },
+            template:`
+            <ISwitch :onoff="onoff" @changed="handleChange"></ISwitch>
+            `,
+            methods: {
+                handleChange(v){
+                    console.log("开关状态改变了："+this.onoff)
+                    this.onoff=!this.onoff
+                }
+            }
+        })
+    </script>
+</body>
+</html>
