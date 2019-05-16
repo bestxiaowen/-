@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="./bootstrap/dist/css/bootstrap.css">
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <style>
+            .tabs {
+                width: 600px;
+                height: 300px;
+                border: 1px solid #000;
+                border-radius: 5px;
+            }
+    
+            .tabs header {
+                height: 40px;
+                line-height: 40px;
+                border-bottom: 1px solid #000;
+                display: flex;
+            }
+            .tabs header .item {
+                padding: 0 20px;
+                border-right: 1px solid #000;
+            }
+    
+            .tabs header .item.active {
+                background: #ccc;
+            }
+        </style>
+</head>
+<body>
+    <div id="app">
+        
+    </div>
+
+    <script>
+        Vue.component("Tabs",{
+            props: {
+                value:[String,Number]
+            },
+            data(){
+                return {
+                    list:[],
+                    active:this.value
+                }
+            },
+            template:`
+            <div class="tabs">
+                <header>
+                    <div
+                        :class="['item',{
+                            active:active===item.name
+                        }]"
+                        @click="active=item.name"
+                        v-for="item in list"
+                    >
+                        {{item.label}}
+                    </div>
+                </header>
+                <slot />
+            </div>
+            `,
+            mounted () {
+                // 只有在mounted之后才能访问子组件对象
+                const children=this.$children
+                console.log(children)
+                console.log(typeof children)
+                if(Array.isArray(children)){
+                    const filter=children.filter(item => item.label&&(item.name||typeof item.name==="number"))
+                    this.list=filter
+                    console.log(filter)
+                }
+            },
+            watch: {
+                value(v){
+                    this.active=v
+                }
+            },
+            computed:{
+                labels(){
+
+                }
+            }
+        })
+        Vue.component("TabPane",{
+            props: {
+                label:String,
+                name:[String,Number]
+            },
+            computed: {
+                active(){
+                    return this.$parent.active
+                }
+            },
+            template:`
+            <div class="content" v-if="active===name">
+                <slot/>
+            </div>
+            `,
+            watch: {
+                
+            }
+        })
+        const vm = new Vue({
+            el: '#app',
+            data: {
+                
+            },
+            template:`
+                <keep-alive>
+                    <Tabs :value="1">
+                        <TabPane label="选项卡1" :name="1">选项卡内容1</TabPane>
+                        <TabPane label="选项卡2" :name="2">选项卡内容2</TabPane>
+                        <TabPane label="选项卡3" :name="3">选项卡内容3</TabPane>
+                        <TabPane label="选项卡4" :name="4">选项卡内容4</TabPane>
+                        <TabPane label="选项卡5" :name="5">选项卡内容5</TabPane>
+                        <TabPane label="选项卡6" :name="6">选项卡内容6</TabPane>
+                    </Tabs>
+                </keep-alive>
+            `
+        })
+    </script>
+</body>
+</html>

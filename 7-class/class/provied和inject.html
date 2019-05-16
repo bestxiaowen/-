@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="../bootstrap/dist/css/bootstrap.css">
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+<body>
+    <div id="app">
+        
+    </div>
+
+    <script>
+        Vue.component("parent",{
+            template:`
+            <div class="parent">
+                <slot />
+            </div>
+            `,
+            //给子组件提供功能
+            provide(){
+                return {
+                    getName(){
+                        return "张三"
+                    },
+                    getAge(){
+                        return 20
+                    }
+                }
+            }
+
+        })
+        Vue.component("child",{
+            // 把父组件里提供的服务注入到当前组件里
+            // 可以跨组件使用
+            inject:["getName","getAge"],
+            template:`
+            <div class="child">
+                {{getName()}}
+            </div>
+            `,
+            created () {
+                console.log(this.$parent)
+            }
+
+        })
+        Vue.component("Test",{
+            inject:['getAge'],
+            created(){
+                this.$on('test',(v) =>{
+                    console.log("事件触发了")
+                })
+            },
+            template:`
+            <div class="test" @click="$emit('test')">
+                {{getAge()}}
+                <slot />
+            </div>
+            `,
+
+        })
+        const vm = new Vue({
+            el: '#app',
+            data: {
+                haha:'haha'
+            },
+            template:`
+            <parent>
+                <Test @test="click">
+                    <child />
+                </Test>
+            </parent>
+            `,
+            methods: {
+                click(){
+                    console.log('test事件触发了')
+                }
+            }
+        })
+    </script>
+</body>
+</html>

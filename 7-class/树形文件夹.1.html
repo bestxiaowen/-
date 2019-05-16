@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="./bootstrap/dist/css/bootstrap.css">
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <style>
+        ul {
+            list-style: none;
+        }
+
+        .show {
+            width: 20px;
+            height: 20px;
+            background-color: red;
+            float: left;
+            text-align: center;
+            font-weight: bold;
+            transition-duration: 0.3s;
+            cursor: pointer;
+        }
+
+        .main_li {
+            border: 1px solid black
+        }
+    </style>
+</head>
+
+<body>
+    <div id="app">
+
+    </div>
+
+    <script>
+        Vue.component("Tree", {
+            props: {
+                data: Array
+            },
+            data(){
+                return {
+                    dataMain:this.data,
+                    folder:{name:"文件夹",show:true,child:[]}
+                }
+            },
+            watch: {
+                data(v){
+                    this.dataMain=v
+                }  
+            },
+            template: `
+            <ul>
+                <li v-for="(item,index) in data">
+                    <div>
+                        <div class="show" @click="change(item,index)">↓</div><span>{{item.name}}</span><button @click="add(item,index)">+</button><button @click="remove(item,index)">-</button>
+                    </div>
+                    <Tree :data="item.child" v-if="Array.isArray(item.child)" v-show="item.show" />
+                </li>
+            </ul>
+            `,
+            methods: {
+                change(item, e) {
+                    item.show = !item.show
+                    console.log(e.currentTarget)
+                    console.log(item.show)
+                    if (item.show) {
+                        e.currentTarget.style.transform = 'rotate(0deg)'
+                    } else {
+                        e.currentTarget.style.transform = 'rotate(-90deg)'
+                    }
+                },
+                add(item,i){
+                    console.log(item)
+                    //console.log(typeof item)
+                    //console.log(typeof item.child)
+                    item.child.push(this.folder)
+                },
+                remove(item,i){
+                    console.log(i)
+                    console.log(item)
+                    console.log(typeof item)
+                    item.child.splice(i,1)
+                }
+            }
+
+        })
+        const vm = new Vue({
+            el: '#app',
+            data: {
+                tree: [
+                    {
+                        name: "文件夹1",
+                        show: true,
+                        child: [
+                            {
+                                name: "文件夹",
+                                show: true,
+                                child: [
+                                    {
+                                        name: "文件夹",
+                                        show: true,
+                                        child: [
+                                            {
+                                                name: "文件夹",
+                                                show: true,
+                                                child:[]
+                                            }
+                                        ]
+                                    },
+                                    {
+                                        name: "文件夹",
+                                        show: true,
+                                        child:[]
+                                    }
+
+                                ]
+                            },
+                            {
+                                name: "文件夹",
+                                show: true,
+                                child: [
+                                    {
+                                        name: "文件夹",
+                                        show: true,
+                                        child:[]
+                                    },
+                                    {
+                                        name: "文件夹",
+                                        show: true,
+                                        child:[]
+                                    }
+
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        name: "文件夹2",
+                        show: true,
+                        child:[]
+                    }
+
+                ]
+            },
+            template: `
+            <Tree :data="tree" />
+            `
+        })
+    </script>
+</body>
+
+</html>

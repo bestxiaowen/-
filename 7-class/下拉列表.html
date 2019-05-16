@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="./bootstrap/dist/css/bootstrap.css">
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <style>
+    .text{
+        width: 250px;
+        height: 30px;
+        border: 1px solid black;
+        display: flex;
+        justify-content: space-between
+    }
+    .option{
+        width: 250px;
+        height: 28px;
+        border: 1px solid black;
+        border-top: none;
+    }
+    .btn{
+        width: 30px;
+        height: 30px;
+        text-align: center;
+        padding: 0;
+    }
+    .bg{
+        background-color: gray;
+        color: white;
+    }
+    </style>
+</head>
+<body>
+    <div id="app">
+        
+    </div>
+
+    <script>
+        Vue.component("Select",{
+            props:{
+                value:String
+            },
+            data(){
+                return {
+                    val:this.value,
+                    show:false,
+                    list:[],
+                    listIndex:0
+                }
+            },
+            watch:{
+                val(v){
+                    this.$emit('input',v)
+                },
+                listIndex(v){
+                    console.log(this.listIndex)
+                    console.log(this.model)
+                    this.val=this.model
+                }
+            },
+            computed:{
+                model(){
+                    return this.$children[this.listIndex-1].data
+                }
+            },
+            template:`
+            <div>
+                <div class="text" @click="show=!show">
+                    <span>
+                        {{val}}
+                    </span>
+                    <div class="btn">
+                        ↓
+                    </div>
+                </div>
+                <slot />
+            </div>
+            `,
+            mounted () {
+                const children=this.$children
+                console.log(children)
+                console.log(this.listIndex)
+                console.log(this.show)
+                document.addEventListener('keydown',(e)=>{
+                    if(this.show){
+                        //console.log(e.keyCode)
+                        console.log(this.listIndex)
+                        //console.log(this)
+                        if(e.keyCode===38){
+                            if(this.listIndex<=1){
+                                this.listIndex=this.$children.length
+                            }else{
+                                this.listIndex--
+                            }
+                            console.log(this.listIndex)
+                        }else if(e.keyCode===40){
+                            if(this.listIndex===this.$children.length){
+                                this.listIndex=1
+                            }else{
+                                this.listIndex++
+                            }
+                            console.log(this.listIndex)
+                        }
+                        if(e.keyCode===13){
+                            this.$parent.listIndex=this.value
+                        }
+                    }
+                    
+                })
+                
+                
+                // document.addEventListener('mousedown',(e)=>{
+                //     if(this.show){
+                //         this.show=false
+                //     }
+                    
+                // })
+                    
+                
+
+                    
+                //}
+                // console.log(typeof children)
+                // if(typeof children==="object"){
+                //     const filter=children.filter(item => item.value)
+                //     this.list=filter
+                //     console.log(filter)
+                //     console.log(typeof filter)
+                // }
+                //const filter= children.filter(item => item.value===item.listIndex)
+                //console.log(children[2].content)
+                //console.log(filter)
+            },
+            methods:{
+                
+            }
+        })
+        Vue.component("Option",{
+            props:{
+                value:[Number,String],
+                data:String,
+            },
+            computed: {
+                  show(){
+                      return this.$parent.show
+                  },
+                  content(){
+                      return this.data
+                  }
+            },
+            template:`
+            <div 
+                :class="['option',{bg:$parent.listIndex.toString()===value}]" 
+                v-if="show" 
+                @click.stop="click" 
+            >
+                {{data}}
+            </div>
+            `,
+            methods: {
+                click(){
+                    console.log(this.$parent.listIndex)
+                    console.log(typeof this.$parent.listIndex.toString())
+                    console.log(this.value)
+                    console.log(typeof this.value)
+
+                    this.$parent.listIndex=this.value
+                    this.$parent.show=!this.$parent.show
+                    console.log(typeof this.$parent.listIndex)
+                },
+                
+            }
+        })
+        const vm = new Vue({
+            el: '#app',
+            data: {
+                val:'请选择'
+            },
+            template:`
+            <Select v-model="val">
+                <Option value=1 data="内容1"></Option>
+                <Option value=2 data="内容2"></Option>
+                <Option value=3 data="内容3"></Option>
+                <Option value=4 data="内容4"></Option>
+                <Option value=5 data="内容5"></Option>
+                <Option value=6 data="内容6"></Option>
+            </Select>
+            `,
+        })
+    </script>
+</body>
+</html>
