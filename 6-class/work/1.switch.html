@@ -41,11 +41,11 @@
     <script>
         Vue.component('ISwitch',{
             props:{
-                onoff:Boolean
+                value:Boolean
             },
             data(){
                 return {
-                    check:this.onoff
+                    check:this.value
                 }
             },
             template:`
@@ -58,7 +58,7 @@
                     this.check=v
                 },
                 check(v){
-                    this.$emit('changed',v)
+                    this.$emit("input",v)
                 }
             },
             methods:{
@@ -73,12 +73,13 @@
                 onoff:false
             },
             template:`
-            <ISwitch :onoff="onoff" @changed="handleChange"></ISwitch>
+            <div @click="click">
+            <ISwitch v-model="onoff"></ISwitch>
+            </div>
             `,
             methods: {
-                handleChange(v){
-                    console.log("开关状态改变了："+this.onoff)
-                    this.onoff=!this.onoff
+                click(){
+                    console.log(this.onoff)
                 }
             }
         })

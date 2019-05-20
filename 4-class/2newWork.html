@@ -121,6 +121,8 @@
                 },
                 enter(){
                     this.val=this.searchList[this.listIndex]
+                    console.log(this.searchList)
+                    this.searchList=[]
                 },
                 click(i){
                     this.val=this.searchList[i]
@@ -153,10 +155,11 @@
             computed: {
                 searchList:{
                     get(){
+                        var reg=new RegExp(this.val)
                         if(!this.val) return []
-                    return this.arr1.filter(item =>{
-                        return new RegExp(this.val).test(item)
-                    })
+                        return this.arr1.filter(item =>{
+                            return new RegExp(this.val).test(item)
+                        })
                     },
                     set(){
                     }

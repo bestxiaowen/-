@@ -28,14 +28,6 @@
                     <Tree :data="item.children" v-if="Array.isArray(item.children)" v-show="item.expand" />
                 </li>
             </ul>
-            <ul class="tree">
-                <li v-for="item in data">
-                    <div class="title" @click="item.expand = !item.expand">
-                        姓名:<span>{{item.name}}</span> 性别:<span>{{item.sex}}</span>
-                    </div>
-                    <Tree :data="item.children" v-if="Array.isArray(item.children)" v-show="item.expand" />
-                </li>
-            </ul>
             </div>
             `
         })

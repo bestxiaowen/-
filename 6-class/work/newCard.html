@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        .tabs {
+            width: 500px;
+            height: 300px;
+            border: 1px solid #000;
+            border-radius: 5px;
+        }
+
+        .tabs header {
+            height: 40px;
+            line-height: 40px;
+            border-bottom: 1px solid #000;
+            display: flex;
+        }
+        .tabs header .item {
+            padding: 0 20px;
+            border-right: 1px solid #000;
+        }
+
+        .tabs header .item.active {
+            background: #ccc;
+        }
+    </style>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+<body>
+    <div id="app">
+        
+    </div>
+
+    <script>
+        Vue.component('Tabs', {
+            props: {
+                value: [String, Number]
+            },
+            template: `
+            <div class="tabs">
+                <header>
+                    <div
+                        :class="['item', {
+                            active: active === item.name
+                        }]"
+                        @click="active = item.name"
+                        v-for="item in list"
+                    >
+                        {{item.label}}
+                    </div>
+                </header>
+                <slot />
+            </div>
+            `,
+            data() {
+                return {
+                    list: [],
+                    active: this.value
+                }
+            },
+            watch: {
+                value(v) {
+                    this.active = v;
+                }
+            },
+            mounted() {
+                // 只有在mounted之后才能访问子组件对象
+                const children = this.$children
+                console.log(children[0].name)
+                // 循环出子组件的数据 绑定到当前组件
+                if (Array.isArray(children)) {
+                    const filter =  children.filter(item => item.label && (item.name || typeof item.name === 'number'))
+                    this.list = filter;
+                    console.log(filter[0].name)
+                }
+                
+            },
+        })
+
+        Vue.component('TabPane', {
+            props: {
+                label: String,
+                name: [String, Number]
+            },
+            template:`
+            <div class="content" v-if="active === name">
+                <slot />
+            </div>
+            `,
+            computed: {
+                active() {
+                    return this.$parent.active
+                }
+            },
+        })
+
+        Vue.component('Test', {
+            template: '<div>xx</div>'
+        })
+
+        const vm = new Vue({
+            el: '#app',
+            data: {
+              
+            },
+            template:`
+            <keep-alive>
+                <Tabs :value="1">
+                    <TabPane label="选项卡1" :name="1">选项卡内容1</TabPane>
+                    <TabPane label="选项卡2" :name="2">选项卡内容2</TabPane>
+                    <TabPane label="选项卡3" :name="3">选项卡内容3</TabPane>
+                    <TabPane label="选项卡4" :name="4">选项卡内容4</TabPane>
+                    <TabPane label="选项卡5" :name="5">选项卡内容5</TabPane>
+                </Tabs>    
+            </keep-alive>
+            `
+        })
+    </script>
+</body>
+</html>

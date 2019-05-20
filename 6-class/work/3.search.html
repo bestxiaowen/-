@@ -84,7 +84,7 @@
                     this.val=v
                 },
                 val(v){
-                    this.$emit("InputChange",v)
+                    this.$emit("input",v)
                 }
             },
             methods:{
@@ -166,14 +166,11 @@
             },
             template:`
             <div>
-                <InputSearch v-model="val" @InputChange="handleChange"></InputSearch>
+                <InputSearch v-model="val"></InputSearch>
             </div>
             `,
             methods: {
-                handleChange(v){
-                    this.val=v
-                    console.log(this.val)
-                }
+                
             },
             
         })

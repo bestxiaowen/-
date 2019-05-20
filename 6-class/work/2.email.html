@@ -85,7 +85,7 @@
                     this.val=v
                 },
                 val(v){
-                    this.$emit("changeVal",v)
+                    this.$emit("input",v)
                 }
             },
             computed: {
@@ -136,13 +136,11 @@
                 
             },
             methods: {
-                handleChange(v){
-                    this.val=v
-                }
+                
             },
             template:`
-            <div>
-            <InputEmail v-model="val" @changeVal="handleChange"></InputEmail>
+            <div> 
+            <InputEmail v-model="val"></InputEmail>
             </div>
             `
             

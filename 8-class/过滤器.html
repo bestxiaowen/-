@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+<body>
+    <div id="app">
+        
+    </div>
+
+    <script>
+        Vue.filter('yen',(value)=>{
+            return '￥'+value
+        })
+        Vue.filter('aB',(value)=>{
+            return value.toUpperCase()
+        })
+        Vue.filter('Ba',(value)=>{
+            return value.toLowerCase()
+        })
+        const vm = new Vue({
+            el: '#app',
+            data: {
+                price:100,
+                val:'aBaBadrddG'
+            },
+            template:`
+            <div>
+            <p>{{price | yen}}</p>
+            <p>{{val | aB}}</p>
+            <p>{{val | Ba}}</p>
+            <p>{{val | Ba | aB}}</p>
+            <p>{{val | Ba | aB | add}}</p>
+            </div>
+            `,
+            filters:{
+                add(v){
+                    return v+'111'
+                }
+            }
+        })
+    </script>
+</body>
+</html>

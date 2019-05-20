@@ -43,13 +43,15 @@
                 selected:false
             },
             template:`
-            <div>
+            <div @click="click">
                 {{selected}}
                 <iSwitch v-model='selected'/>
             </div>
             `,
             methods:{
-
+                click(){
+                    console.log(this.selected)
+                }
             },
             components: {
                 iSwitch
