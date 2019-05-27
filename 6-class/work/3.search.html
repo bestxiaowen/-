@@ -159,14 +159,14 @@
         const vm = new Vue({
             el: '#app',
             data: {
-                val: "",
+                nameval: "",
                 //re: "/"+this.val+"/g",
                 //re: /this.val/g,
                 //reg:new RegExp(this.val,"g"),
             },
             template:`
             <div>
-                <InputSearch v-model="val"></InputSearch>
+                <InputSearch v-model="nameval"></InputSearch>
             </div>
             `,
             methods: {

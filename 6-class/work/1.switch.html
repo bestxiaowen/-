@@ -40,6 +40,11 @@
     </div>
     <script>
         Vue.component('ISwitch',{
+            template:`
+            <div class="switch" @click="change" :class="{bg:check===true}">
+                <div class="button" :class="{active:check===true}"></div>
+            </div>
+            `,
             props:{
                 value:Boolean
             },
@@ -48,11 +53,7 @@
                     check:this.value
                 }
             },
-            template:`
-            <div class="switch" @click="change" :class="{bg:check===true}">
-                <div class="button" :class="{active:check===true}"></div>
-            </div>
-            `,
+            
             watch: {
                 onoff(v){
                     this.check=v
@@ -73,7 +74,7 @@
                 onoff:false
             },
             template:`
-            <div @click="click">
+            <div>
             <ISwitch v-model="onoff"></ISwitch>
             </div>
             `,

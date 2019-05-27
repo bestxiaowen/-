@@ -40,6 +40,20 @@
 
     <script>
         Vue.component("Select",{
+            
+            template:`
+            <div>
+                <div class="text" @click="show=!show">
+                    <span>
+                        {{val}}
+                    </span>
+                    <div class="btn">
+                        ↓
+                    </div>
+                </div>
+                <slot />
+            </div>
+            `,
             props:{
                 value:String
             },
@@ -66,19 +80,6 @@
                     return this.$children[this.listIndex-1].data
                 }
             },
-            template:`
-            <div>
-                <div class="text" @click="show=!show">
-                    <span>
-                        {{val}}
-                    </span>
-                    <div class="btn">
-                        ↓
-                    </div>
-                </div>
-                <slot />
-            </div>
-            `,
             mounted () {
                 const children=this.$children
                 console.log(children)
@@ -151,15 +152,6 @@
                       return this.data
                   }
             },
-            template:`
-            <div 
-                :class="['option',{bg:$parent.listIndex.toString()===value}]" 
-                v-if="show" 
-                @click.stop="click" 
-            >
-                {{data}}
-            </div>
-            `,
             methods: {
                 click(){
                     console.log(this.$parent.listIndex)
@@ -172,8 +164,20 @@
                     console.log(typeof this.$parent.listIndex)
                 },
                 
-            }
+            },
+            template:`
+            <div 
+                :class="['option',{bg:$parent.listIndex.toString()===value}]" 
+                v-if="show" 
+                @click.stop="click" 
+            >
+                {{data}}
+            </div>
+            `,
+            
         })
+
+        
         const vm = new Vue({
             el: '#app',
             data: {

@@ -38,15 +38,6 @@
 
     <script>
         Vue.component("Tabs",{
-            props: {
-                value:[String,Number]
-            },
-            data(){
-                return {
-                    list:[],
-                    active:this.value
-                }
-            },
             template:`
             <div class="tabs">
                 <header>
@@ -63,6 +54,16 @@
                 <slot />
             </div>
             `,
+            props: {
+                value:[String,Number]
+            },
+            data(){
+                return {
+                    list:[],
+                    active:this.value
+                }
+            },
+            
             mounted () {
                 // 只有在mounted之后才能访问子组件对象
                 const children=this.$children

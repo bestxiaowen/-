@@ -43,6 +43,27 @@
     </div>
     <script>
         Vue.component("InputEmail",{
+            template:`
+            <div>
+            <input 
+                type="text" 
+                v-model="val" 
+                @keydown.down.prevent="down"
+                @keydown.up.prevent="up"
+                @keydown.enter="enter"
+            >
+            <ul>
+                <li 
+                    v-show="val!==''"
+                    :class="{bg:listIndex==index}"
+                    v-for="(item,index) in arr1"
+                    @click="change(index)"
+                    @mouseover="hover(index,$event)"
+                    @mouseout="out(index,$event)"
+                >{{item}}</li>
+            </ul>
+            </div>
+            `,
             props:{
                 value:String
             },
@@ -59,27 +80,7 @@
                     val:this.value
                 }
             },
-            template:`
-            <div>
-            <input 
-                type="text" 
-                v-model="val" 
-                @keydown.down.prevent="down"
-                @keydown.up.prevent="up"
-                @keydown.enter="enter"
-            >
-            <ul>
-                <li 
-                    v-if="val!==''" 
-                    :class="{bg:listIndex==index}"
-                    v-for="(item,index) in arr1"
-                    @click="change(index)"
-                    @mouseover="hover(index,$event)"
-                    @mouseout="out(index,$event)"
-                >{{item}}</li>
-            </ul>
-            </div>
-            `,
+            
             watch: {
                 value(v){
                     this.val=v
@@ -131,7 +132,7 @@
         const vm = new Vue({
             el: '#app',
             data: {
-                val:"",
+                message:"",
                 //newVal:'',
                 
             },
@@ -140,7 +141,7 @@
             },
             template:`
             <div> 
-            <InputEmail v-model="val"></InputEmail>
+            <InputEmail v-model="message"></InputEmail>
             </div>
             `
             
