@@ -104,7 +104,7 @@
                                 title:'提示',
                                 desc:msg
                             })
-                            
+                            this.changeUid()
                         }
                     })
                 })

@@ -1,9 +1,12 @@
+
+
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 import LoginPage from '../page/Login.vue'
 import UsersPage from '../page/admin/Users.vue'
 import WelcomePage from '../page/admin/welcome.vue'
 import AdminPage from '../page/admin/admin.vue'
+import RolePage from '../page/admin/role.vue'
 
 
 
@@ -35,6 +38,13 @@ const router = new VueRouter({
                 {
                     path:'user',
                     component:UsersPage,
+                    meta:{
+                        auth_login:true
+                    },
+                },
+                {
+                    path:'role',
+                    component:RolePage,
                     meta:{
                         auth_login:true
                     },

@@ -5,5 +5,5 @@
 import { http } from './http'
 
 export function getUserList(params) {
-    return http.get('/sys/user/list',params)
+    return http.get('/sys/user/list',{params})
 }

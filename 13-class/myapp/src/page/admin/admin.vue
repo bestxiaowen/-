@@ -56,6 +56,7 @@
             getMenuList().then(res => {
                 // 请求到的菜单放入组件变量成员中
                 this.menu = res.data
+                //console.log(res)
                 //console.log(this.menu)
             })
         },
@@ -90,6 +91,7 @@
         width: 100%;
         background-color: #ffc;
         flex: 1;
+        overflow: auto;
         .content{
             padding: 10px;
         }
